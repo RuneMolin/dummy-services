@@ -2,10 +2,8 @@ package dk.cpr.dar.services.dummy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
 
@@ -21,8 +19,8 @@ public class SogneinddelingService extends DummyService {
   private static final String MY_JSON = "sogneinddeling.json";
 
   @RequestMapping(method = RequestMethod.GET, path = "/" + MY_SERVICE)
-  String myGet() {
-    return doGet(MY_SERVICE, MY_JSON);
+  String myGet(@RequestParam Map<String,String>  webRequest) {
+    return doGet(MY_SERVICE, MY_JSON, webRequest);
   }
 
   @RequestMapping(method = RequestMethod.POST, path = "/" + MY_SERVICE)

@@ -11,6 +11,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by vagrant on 13-05-16.
@@ -26,9 +27,9 @@ public abstract class DummyService {
 
   protected ObjectMapper mapper = new ObjectMapper();
 
-  protected String doGet(String serviceMethod, String jsonFile) {
+  protected String doGet(String serviceMethod, String jsonFile, Map<String,String> webRequest) {
 
-    logger.debug(String.format("GET - %s called ", serviceMethod));
+    logger.debug(String.format("GET - %s called, params: %s ", serviceMethod, webRequest));
     if (null == jsonTosend) {
       jsonTosend = getJsonFromResource(jsonFile);
     }
