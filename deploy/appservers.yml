@@ -1,0 +1,55 @@
+---
+#
+# NOTE: This playbook requires nexus module to be installed (https://github.com/mihxil/ansible-nexus)
+# typically in /usr/share/ansible/nexus, and configured in /etc/ansible/ansible.cfg
+# having library        = /usr/share/ansible/
+#
+- hosts: local
+  sudo: yes
+  gather_facts: false
+  connection: local
+
+  vars:
+    app_name: dummyservices
+    app_version: 0.0.1-SNAPSHOT
+    app_repro: snapshots
+    app_git_dir: /home/vagrant/work/dummy-services
+
+  tasks:
+#
+# Create the config stuff
+#
+    - name: Create config dir
+      file: path=/apps/Cpr-env state=directory
+
+    - name: Create app log dir
+      file: path=/apps/logs/CprDAR/{{app_name}} state=directory
+#
+# Create the app stuff
+#
+    - name: Create app dir
+      file: path=/apps/CprDAR/{{app_name}} state=directory
+
+    - name: Download app from nexus
+      nexus:
+            nexus=http://dev.build.cpr.dk/nexus
+            repository={{app_repro}}
+            force=yes
+            artifactId=dk.cpr.dar:{{app_name}}:{{app_version}}
+            extension=jar
+      register: download
+
+    - name: Install app
+      copy:
+            src={{download.dest}}
+            dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=a+x
+
+    - name: Create app conf
+      copy: src=/home/vagrant/work/{{app_name}}/src/main/resources/{{app_name}}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner=root group=root mode=644 backup=yes
+
+
+    - name: Create symlink
+      file: src=/apps/CprDAR/{{app_name}}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
+
+    - name: Start app
+      command: /etc/init.d/{{app_name}} restart
