@@ -45,7 +45,7 @@
             dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=a+x
 
     - name: Create app conf
-      copy: src=/home/vagrant/work/{{app_name}}/src/main/resources/{{app_name}}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner=root group=root mode=644 backup=yes
+      copy: src={{app_git_dir}}/src/main/resources/{{app_name}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner=root group=root mode=644 backup=yes
 
 
     - name: Create symlink
