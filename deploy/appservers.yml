@@ -33,7 +33,7 @@
       file: path=/apps/CprDAR/{{app_name}} state=directory
 
     - name: Download app from nexus
-      connection: local
+      delegate_to: localhost
       nexus:
             nexus=http://dev.build.cpr.dk/nexus
             repository={{app_repro}}
