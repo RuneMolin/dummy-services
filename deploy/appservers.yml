@@ -56,4 +56,4 @@
       file: src=/apps/CprDAR/{{app_name}}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
 
     - name: Start app
-      command: sudo /etc/init.d/{{app_name}} restart
+      command: sudo -i /etc/init.d/{{app_name}} restart
