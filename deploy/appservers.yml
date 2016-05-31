@@ -5,7 +5,7 @@
 # having library        = /usr/share/ansible/
 #
 - hosts: local
-#  sudo: yes
+  sudo: yes
   gather_facts: false
 #  connection: local
 
@@ -33,6 +33,7 @@
       file: path=/apps/CprDAR/{{app_name}} state=directory
 
     - name: Download app from nexus
+      sudo: no
       nexus:
             nexus=http://dev.build.cpr.dk/nexus
             repository={{app_repro}}
