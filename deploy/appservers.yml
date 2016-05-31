@@ -33,7 +33,6 @@
       file: path=/apps/CprDAR/{{app_name}} state=directory
 
     - name: Download app from nexus
-      delegate_to: localhost
       nexus:
             nexus=http://dev.build.cpr.dk/nexus
             repository={{app_repro}}
@@ -41,6 +40,7 @@
             artifactId=dk.cpr.dar:{{app_name}}:{{app_version}}
             extension=jar
       register: download
+      delegate_to: localhost
 
     - name: Install app
       copy:
