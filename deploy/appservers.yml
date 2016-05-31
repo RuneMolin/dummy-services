@@ -10,6 +10,8 @@
   connection: local
 
   vars:
+    app_owner: root
+    app_group: root
     app_name: dummyservices
     app_version: 0.0.1-SNAPSHOT
     app_repro: snapshots
@@ -45,7 +47,7 @@
             dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=a+x
 
     - name: Create app conf
-      copy: src={{app_git_dir}}/src/main/resources/{{app_name}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner=root group=root mode=644 backup=yes
+      copy: src={{app_git_dir}}/src/main/resources/{{app_name}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner={{app_owner}} group={{app_group}} mode=644 backup=yes
 
 
     - name: Create symlink
