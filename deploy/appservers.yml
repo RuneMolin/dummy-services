@@ -33,12 +33,7 @@
       file: path=/apps/CprDAR/{{app_name}} state=directory
 
     - name: Download app from nexus
-      nexus:
-            nexus=http://dev.build.cpr.dk/nexus
-            repository={{app_repro}}
-            force=yes
-            artifactId=dk.cpr.dar:{{app_name}}:{{app_version}}
-            extension=jar
+      local_action: nexus nexus=http://dev.build.cpr.dk/nexus repository={{app_repro}} force=yes artifactId=dk.cpr.dar:{{app_name}}:{{app_version}} extension=jar
       register: download
 
     - name: Install app
