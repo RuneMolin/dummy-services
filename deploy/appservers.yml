@@ -5,7 +5,7 @@
 # having library        = /usr/share/ansible/
 #
 - hosts: local
-  sudo: yes
+#  sudo: yes
   gather_facts: false
 #  connection: local
 
@@ -18,16 +18,6 @@
     app_git_dir: /home/vagrant/work/dummy-services
 
   tasks:
-    - name: Download app from nexus
-      nexus:
-            nexus=http://dev.build.cpr.dk/nexus
-            repository={{app_repro}}
-            force=yes
-            artifactId=dk.cpr.dar:{{app_name}}:{{app_version}}
-            extension=jar
-      register: download
-      delegate_to: localhost
-
 #
 # Create the config stuff
 #
@@ -42,7 +32,15 @@
     - name: Create app dir
       file: path=/apps/CprDAR/{{app_name}} state=directory
 
-
+    - name: Download app from nexus
+      nexus:
+            nexus=http://dev.build.cpr.dk/nexus
+            repository={{app_repro}}
+            force=yes
+            artifactId=dk.cpr.dar:{{app_name}}:{{app_version}}
+            extension=jar
+      register: download
+      delegate_to: localhost
 
     - name: Install app
       copy:
