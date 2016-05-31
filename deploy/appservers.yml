@@ -46,7 +46,7 @@
     - name: Install app
       copy:
             src={{download.dest}}
-            dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=a+x
+            dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=755
 
     - name: Create app conf
       copy: src={{app_git_dir}}/src/main/resources/{{app_name}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner={{app_owner}} group={{app_group}} mode=644 backup=yes
