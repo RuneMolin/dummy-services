@@ -7,7 +7,7 @@
 - hosts: local
   sudo: yes
   gather_facts: false
-  connection: local
+#  connection: local
 
   vars:
     app_owner: root
