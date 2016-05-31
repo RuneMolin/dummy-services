@@ -22,15 +22,15 @@
 # Create the config stuff
 #
     - name: Create config dir
-      file: path=/apps/Cpr-env state=directory
+      file: path=/apps/Cpr-env state=directory  owner={{app_owner}} group={{app_group}}
 
     - name: Create app log dir
-      file: path=/apps/logs/CprDAR/{{app_name}} state=directory
+      file: path=/apps/logs/CprDAR/{{app_name}} state=directory  owner={{app_owner}} group={{app_group}}
 #
 # Create the app stuff
 #
     - name: Create app dir
-      file: path=/apps/CprDAR/{{app_name}} state=directory
+      file: path=/apps/CprDAR/{{app_name}} state=directory  owner={{app_owner}} group={{app_group}}
 
     - name: Download app from nexus
       sudo: no
@@ -46,7 +46,7 @@
     - name: Install app
       copy:
             src={{download.dest}}
-            dest=/apps/CprDAR/{{app_name}}/{{download.filename}} mode=755
+            dest=/apps/CprDAR/{{app_name}}/{{download.filename}}  owner={{app_owner}} group={{app_group}} mode=755
 
     - name: Create app conf
       copy: src={{app_git_dir}}/src/main/resources/{{app_name}}.conf dest=/apps/CprDAR/{{app_name}}/{{download.filename | replace('.jar', '.conf')  }} owner={{app_owner}} group={{app_group}} mode=644 backup=yes
@@ -56,4 +56,4 @@
       file: src=/apps/CprDAR/{{app_name}}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
 
     - name: Start app
-      command: /etc/init.d/{{app_name}} restart
+      command: sudo /etc/init.d/{{app_name}} restart
