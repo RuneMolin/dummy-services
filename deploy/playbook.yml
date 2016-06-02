@@ -1,0 +1,51 @@
+---
+# This playbook assumes one of two groups are defined in the inventory
+#
+# "snapshot" group pulls from the Nexus snapshot repository
+#
+# "release" group pulls from the Nexus release repository
+#
+# Example snapshot inventory:
+#
+# [snapshot]
+# cprappcop821v ansible_ssh_user=jboss
+#
+# You supply this inventory using the Jenkins Ansible plugin configuration
+#
+#
+- hosts: all
+  sudo: yes
+  gather_facts: false
+
+  - name: Create config dir
+    file: path=/apps/Cpr-env state=directory  owner={{app_owner}} group={{app_group}}
+
+  - name: Create app log directory
+    file: path=/apps/logs/CprDAR/{{app_name}} state=directory  owner={{app_owner}} group={{app_group}}
+
+  - name: Create app dir
+    file: path=/apps/CprDAR/{{app_name}} state=directory  owner={{app_owner}} group={{app_group}}
+
+  - name: Download app from nexus
+    sudo: no
+    nexus:
+          nexus=http://dev.build.cpr.dk/nexus
+          repository={{repository}}
+          force=yes
+          artifactId=dk.cpr.dar:{{artifact_name}}:{{artifact_version}}
+          extension=jar
+    register: download
+    delegate_to: localhost
+
+  - name: Install app
+    copy: src={{download.dest}}
+          dest=/apps/CprDAR/{{app_name}}/{{app_name}} owner={{app_owner}} group={{app_group}} mode=755
+
+  - name: Create app conf
+    template: src=conf.template dest=/apps/CprDAR/{{app_name}}/{{app_name}}.conf owner={{app_owner}} group={{app_group}}
+
+  - name: Create symlink
+    file: src=/apps/CprDAR/{{app_name}}/{{app_name}} dest=/etc/init.d/{{app_name}} state=link
+
+  - name: Start app
+    service: name={{app_name}} state=restarted
