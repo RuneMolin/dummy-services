@@ -17,6 +17,7 @@
   sudo: yes
   gather_facts: false
 
+  tasks:
   - name: Create config dir
     file: path=/apps/Cpr-env state=directory  owner={{app_owner}} group={{app_group}}
 
