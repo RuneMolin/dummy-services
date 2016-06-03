@@ -1,5 +1,4 @@
 artifact_name: dummyservices
-artifact_version: "{{ lookup('env', POM_VERSION) }}"
 app_owner: root
 app_group: root
 app_name: dummyservices

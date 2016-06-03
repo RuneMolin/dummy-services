@@ -33,7 +33,7 @@
           nexus=http://dev.build.cpr.dk/nexus
           repository={{repository}}
           force=yes
-          artifactId=dk.cpr.dar:{{artifact_name}}:{{artifact_version}}
+          artifactId=dk.cpr.dar:{{artifact_name}}:{{ansible_env.POM_VERSION}}
           extension=jar
     register: download
     delegate_to: localhost
