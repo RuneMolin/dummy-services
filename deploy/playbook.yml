@@ -36,7 +36,7 @@
           nexus=http://dev.build.cpr.dk/nexus
           repository={{repository}}
           force=yes
-          artifactId=dk.cpr.dar:{{artifact_name}}:pomVersion
+          artifactId=dk.cpr.dar:{{artifact_name}}:{{pomVersion}}
           extension=jar
     register: download
     delegate_to: localhost
