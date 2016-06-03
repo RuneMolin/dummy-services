@@ -40,13 +40,13 @@
 
   - name: Install app
     copy: src={{download.dest}}
-          dest=/apps/CprDAR/{{app_name}}/{{app_name}} owner={{app_owner}} group={{app_group}} mode=755
+          dest=/apps/CprDAR/{{app_name}}/{{download.filename}} owner={{app_owner}} group={{app_group}} mode=755
 
   - name: Create app conf
     template: src=conf.template dest=/apps/CprDAR/{{app_name}}/{{app_name}}.conf owner={{app_owner}} group={{app_group}}
 
   - name: Create symlink
-    file: src=/apps/CprDAR/{{app_name}}/{{app_name}} dest=/etc/init.d/{{app_name}} state=link
+    file: src=/apps/CprDAR/{{app_name}}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
 
   - name: Start app
-    service: name={{app_name}} state=restarted
+    command: sudo -i /etc/init.d/{{app_name}} restart
