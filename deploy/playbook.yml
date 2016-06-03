@@ -43,7 +43,7 @@
           dest=/apps/CprDAR/{{app_name}}/{{download.filename}} owner={{app_owner}} group={{app_group}} mode=755
 
   - name: Create app conf
-    template: src=conf.template dest=/apps/CprDAR/{{app_name}}/{{app_name}}.conf owner={{app_owner}} group={{app_group}}
+    template: src=conf.template dest=/apps/CprDAR/{{app_name}}/{{ download.filename | replace('.jar', '.conf') }} owner={{app_owner}} group={{app_group}}
 
   - name: Create symlink
     file: src=/apps/CprDAR/{{app_name}}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
