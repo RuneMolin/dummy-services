@@ -18,6 +18,9 @@
   gather_facts: false
 
   tasks:
+  - command: "echo $POM_VERSION"
+    register: pomVersion
+
   - name: Create config dir
     file: path=/apps/Cpr-env state=directory  owner={{app_owner}} group={{app_group}}
 
@@ -33,7 +36,7 @@
           nexus=http://dev.build.cpr.dk/nexus
           repository={{repository}}
           force=yes
-          artifactId=dk.cpr.dar:{{artifact_name}}:{{artifact_version}}
+          artifactId=dk.cpr.dar:{{artifact_name}}:pomVersion
           extension=jar
     register: download
     delegate_to: localhost
