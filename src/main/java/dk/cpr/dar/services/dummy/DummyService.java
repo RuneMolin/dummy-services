@@ -1,6 +1,7 @@
 package dk.cpr.dar.services.dummy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,14 +30,41 @@ public abstract class DummyService {
 
   protected ObjectMapper mapper = new ObjectMapper();
 
-  protected String doGet(String serviceMethod, String jsonFile, Map<String,String> webRequest) {
-
+  protected ResponseEntity doGet(String serviceMethod, String jsonFile, Map<String, String> webRequest) {
+    ResponseEntity responseEntity = ResponseEntity.ok(jsonTosend);
     logger.debug(String.format("GET - %s called, params: %s ", serviceMethod, webRequest));
     if (null == jsonTosend) {
       jsonTosend = getJsonFromResource(jsonFile);
     }
+    if (jsonTosend.contains("httpStatus")) {
+      try {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Map> myObjects = mapper.readValue(jsonTosend, new TypeReference<List<Map>>() {
+        });
+        String myHttp = (String) myObjects.get(0).get("httpStatus");
+
+        switch (myHttp) {
+          case "400":
+            responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            break;
+          case "404":
+            responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            break;
+          case "500":
+            responseEntity = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            break;
+          case "503":
+            responseEntity = ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(null);
+            break;
+        }
+
+      } catch (Exception e) {
+        logger.error("Error during translate of httpStatus codes:", e);
+      }
+
+    }
     logger.debug(String.format("GET - %s returning: %s", serviceMethod, jsonTosend));
-    return jsonTosend;
+    return responseEntity;
   }
 
   protected String doSet(String serviceMethod, List<?> dataList) {
