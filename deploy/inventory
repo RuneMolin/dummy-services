@@ -1,5 +1,6 @@
 [snapshot]
-cprappcop821v ansible_ssh_user=jboss
+#cprappcop821v ansible_ssh_user=jboss
+localhost
 
 
 

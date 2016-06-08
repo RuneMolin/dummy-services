@@ -3,3 +3,4 @@ app_owner: root
 app_group: root
 app_name: dummyservices
 server_port: 9080
+pomVersion: 0.0.1-SNAPSHOT
