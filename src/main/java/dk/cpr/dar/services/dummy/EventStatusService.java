@@ -3,6 +3,7 @@ package dk.cpr.dar.services.dummy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class EventStatusService extends DummyService {
   private static final String MY_JSON = "eventStatus.json";
 
   @RequestMapping(method = RequestMethod.GET, path = "/"+MY_SERVICE)
-  String myGet(@RequestParam Map<String,String> webRequest) {
+  ResponseEntity myGet(@RequestParam Map<String,String> webRequest) {
     return doGet(MY_SERVICE, MY_JSON, webRequest);
   }
 

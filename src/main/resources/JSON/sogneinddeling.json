@@ -1,43 +1,30 @@
-  {
+{
   "records": [
     {
-      "eventid": 59226524,
-      "rowkey": 91928310,
-      "id": "9d73c1d7-8c3c-1393-d207-210baff1358d",
-      "registreringfra": "3747-04-17T14:45:48.413Z",
+      "eventid": 1,
+      "navn": "Store Fuglede",
+      "sogneinddeling": "257543",
+      "sognekode": "7221",
+      "rowkey": 1,
+      "id": "684213a0-151b-40cb-857d-d740bf4e31b1",
+      "registreringfra": "2016-01-25T10:26:32Z",
       "registreringtil": null,
-      "virkningfra": "4651-03-28T20:18:55.286Z",
-      "virkningtil": "2017-04-03T17:53:12.887Z",
-      "status": null,
-      "navn": "labore eu",
-      "sogneinddeling": "non aliqua ut",
-      "sognekode": null
+      "virkningfra": "1753-01-01T00:00:00Z",
+      "virkningtil": null,
+      "status": "3"
     },
     {
-      "eventid": 88872190,
-      "rowkey": 25006660,
-      "id": "b1385804-f180-ccbd-0c79-0d40c34f0d73",
-      "registreringfra": "3265-11-06T03:51:42.476Z",
+      "eventid": 1,
+      "navn": "Store Magleby",
+      "sogneinddeling": "257545",
+      "sognekode": "7192",
+      "rowkey": 2,
+      "id": "6ab33240-cc82-4f38-8144-3dd18ae2611d",
+      "registreringfra": "2016-01-25T10:26:32Z",
       "registreringtil": null,
-      "virkningfra": "4671-02-21T07:10:45.653Z",
+      "virkningfra": "1753-01-01T00:00:00Z",
       "virkningtil": null,
-      "status": null,
-      "navn": null,
-      "sogneinddeling": "Ut dolor",
-      "sognekode": "consectetur"
-    },
-    {
-      "eventid": 4555693,
-      "rowkey": -35150188,
-      "id": "78896f62-9bb2-6f74-15d3-70d350a4af3c",
-      "registreringfra": "3376-01-30T22:01:02.288Z",
-      "registreringtil": null,
-      "virkningfra": "2677-04-03T20:28:01.849Z",
-      "virkningtil": null,
-      "status": null,
-      "navn": null,
-      "sogneinddeling": null,
-      "sognekode": null
+      "status": "3"
     }
   ],
   "restindeks": null
