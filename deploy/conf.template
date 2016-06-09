@@ -1,3 +1,4 @@
 RUN_ARGS="--server.port={{ server_port }}"
 LOG_FOLDER=/apps/logs/CprDAR/{{ app_name }}/
 LOG_FILENAME=server.log
+JAVA_HOME=/apps/java/java7
