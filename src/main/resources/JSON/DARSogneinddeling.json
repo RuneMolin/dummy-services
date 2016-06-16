@@ -1,0 +1,32 @@
+{
+  "records": [
+    {
+      "eventid": 1,
+      "navn": "Store Fuglede",
+      "sogneinddeling": "257543",
+      "sognekode": "7221",
+      "rowkey": 1,
+      "id": "684213a0-151b-40cb-857d-d740bf4e31b1",
+      "registreringfra": "2016-01-25T10:26:32Z",
+      "registreringtil": null,
+      "virkningfra": "1753-01-01T00:00:00Z",
+      "virkningtil": null,
+      "status": "3"
+    },
+    {
+      "eventid": 1,
+      "navn": "Store Magleby",
+      "sogneinddeling": "257545",
+      "sognekode": "7192",
+      "rowkey": 2,
+      "id": "6ab33240-cc82-4f38-8144-3dd18ae2611d",
+      "registreringfra": "2016-01-25T10:26:32Z",
+      "registreringtil": null,
+      "virkningfra": "1753-01-01T00:00:00Z",
+      "virkningtil": null,
+      "status": "3"
+    }
+  ],
+  "restindeks": null
+}
+

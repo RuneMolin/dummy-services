@@ -16,7 +16,6 @@
 - hosts: all
   sudo: yes
   gather_facts: false
-  connection: local
 
   tasks:
   - name: Create config dir
