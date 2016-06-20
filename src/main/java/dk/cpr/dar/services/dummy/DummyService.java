@@ -31,11 +31,12 @@ public abstract class DummyService {
   protected ObjectMapper mapper = new ObjectMapper();
 
   protected ResponseEntity doGet(String serviceMethod, String jsonFile, Map<String, String> webRequest) {
-    ResponseEntity responseEntity = ResponseEntity.ok(jsonTosend);
     logger.debug(String.format("GET - %s called, params: %s ", serviceMethod, webRequest));
     if (null == jsonTosend) {
       jsonTosend = getJsonFromResource(jsonFile);
     }
+
+    ResponseEntity responseEntity = ResponseEntity.ok(jsonTosend);
     if (jsonTosend.contains("httpStatus")) {
       try {
         ObjectMapper mapper = new ObjectMapper();

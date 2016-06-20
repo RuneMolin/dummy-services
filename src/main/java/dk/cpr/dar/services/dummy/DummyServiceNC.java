@@ -35,9 +35,16 @@ public abstract class DummyServiceNC {
     String entitet = webRequest.get("Entitet");
     String jsonTosend = jsonTosendMap.get(entitet);
 
-    logger.debug(String.format("GET called, params: %s ",  webRequest));
+    logger.debug(String.format("GET called, params: %s ", webRequest));
     if (null == jsonTosend) {
       jsonTosend = getJsonFromResource(webRequest);
+      if (null == jsonTosend) {
+        logger.debug("no default json for {}", webRequest.get("Entitet"));
+        jsonTosend = "{\n" +
+          "  \"records\": [],\n" +
+          "  \"restindeks\": null\n" +
+          "}";
+      }
     }
     ResponseEntity responseEntity = ResponseEntity.ok(jsonTosend);
     if (jsonTosend.contains("httpStatus")) {
@@ -72,13 +79,13 @@ public abstract class DummyServiceNC {
   }
 
 
-  protected String doSet(String entitet, Map<String,Object>  data) {
+  protected String doSet(String entitet, Map<String, Object> data) {
     logger.debug(String.format("POST - %s called", entitet));
 
     return getJsonSet(entitet, data);
   }
 
-  private String getJsonSet(String entitet, Map<String,Object>  data) {
+  private String getJsonSet(String entitet, Map<String, Object> data) {
     String jsonTosend = null;
     try {
       jsonTosend = mapper.writeValueAsString(data);
@@ -95,10 +102,12 @@ public abstract class DummyServiceNC {
 
   protected String getJsonFromResource(Map<String, String> webRequest) {
     String json = null;
-    String jsonFile = webRequest.get("Entitet")+".json";
+    String jsonFile = webRequest.get("Entitet") + ".json";
     try {
       Resource resource = resourceLoader.getResource(String.format("classpath:JSON/%s", jsonFile));
       json = IOUtils.toString(resource.getInputStream(), "UTF8");
+    } catch (java.io.FileNotFoundException fe) {
+      logger.error(jsonFile + " - FileNotFoundException");
     } catch (IOException e) {
       e.printStackTrace();
       logger.error(jsonFile + " - exception", e);
