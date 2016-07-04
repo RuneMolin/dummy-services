@@ -14,12 +14,11 @@
   <parent>
     <groupId>dk.cpr</groupId>
     <artifactId>cpr-ng-spring-boot-parent-pom</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.8</version>
   </parent>
 
 
   <dependencies>
-
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
@@ -30,6 +29,29 @@
       <artifactId>h2</artifactId>
     </dependency>
   </dependencies>
-
-
+  <properties>
+    <build.number>SNAPSHOT</build.number>
+    <build.id>1</build.id>
+  </properties>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <delimiters>
+            <delimiter>@</delimiter>
+          </delimiters>
+          <useDefaultDelimiters>false</useDefaultDelimiters>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
