@@ -1,6 +1,6 @@
 artifact_name: dummyservices
-app_owner: root
-app_group: root
+app_owner: jboss
+app_group: jboss
 app_name: dummyservices
 app_path: /apps/CprServices/CprDAR/{{app_name}}
 app_log_path: /apps/logs/CprServices/CprDAR/{{app_name}}

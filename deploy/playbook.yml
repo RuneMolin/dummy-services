@@ -25,6 +25,8 @@
   - name: Create app dir
     file: path={{ app_path }} state=directory  owner={{app_owner}} group={{app_group}}
 
+  - name: Create app properties
+    template: src=prop.template dest={{ app_path }}/{{ app_name }}.properties owner={{app_owner}} group={{app_group}}
 
   - name: Download app from nexus
     sudo: no
@@ -46,6 +48,9 @@
 
   - name: Create symlink
     file: src={{ app_path }}/{{download.filename}} dest=/etc/init.d/{{app_name}} state=link
+
+  - name: Copy logrotate config
+    template: src=logrotate.conf dest=/etc/logrotate.d/{{app_name}}
 
   - name: Start app
     service: name={{ app_name }} state=restarted
