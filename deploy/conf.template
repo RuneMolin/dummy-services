@@ -1,4 +1,5 @@
 RUN_ARGS="--server.port={{ server_port }}"
+RUN_ARGS="$RUN_ARGS --spring.config.location={{ app_path }}/{{ app_name }}.properties"
 LOG_FOLDER={{ app_log_path }}/
 LOG_FILENAME=server.log
 JAVA_HOME=/apps/java/java7
