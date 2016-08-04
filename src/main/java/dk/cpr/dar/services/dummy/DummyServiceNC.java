@@ -50,6 +50,7 @@ public abstract class DummyServiceNC {
     if (jsonTosend.contains("httpStatus")) {
       try {
         ObjectMapper mapper = new ObjectMapper();
+        jsonTosend = "[" + jsonTosend + "]"; // hack to solve problem with deserialization of http error code json
         List<Map> myObjects = mapper.readValue(jsonTosend, new TypeReference<List<Map>>() {
         });
         String myHttp = (String) myObjects.get(0).get("httpStatus");
