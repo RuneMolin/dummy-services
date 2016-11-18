@@ -14,7 +14,7 @@
   <parent>
     <groupId>dk.cpr</groupId>
     <artifactId>cpr-ng-spring-boot-parent-pom</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.12</version>
   </parent>
 
 
@@ -24,15 +24,29 @@
       <artifactId>commons-io</artifactId>
       <version>2.5</version>
     </dependency>
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jersey</artifactId>
+    </dependency>
+
   </dependencies>
+
   <properties>
     <build.number>SNAPSHOT</build.number>
     <build.id>1</build.id>
   </properties>
+
   <build>
     <resources>
       <resource>

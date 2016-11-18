@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by pjacobs2.
  */
-@RestController
+//@RestController
 public class Status extends DummyService {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

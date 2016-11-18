@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by vagrant on 13-05-16.
  */
-@RestController
+//@RestController
 public class SogneinddelingService extends DummyService {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by pjacobs2
  */
-@RestController
+//@RestController
 public class Records extends DummyServiceNC {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

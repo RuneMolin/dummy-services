@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by vagrant on 10-05-16.
  */
-@RestController
+//@RestController
 public class EventStatusService extends DummyService {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
