@@ -1,7 +1,5 @@
 package dk.cpr.dar.rest;
 
-import dk.cpr.dar.rest.controller.RecordsEndpoint;
-import dk.cpr.dar.rest.controller.StatusEndpoint;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 

@@ -3,11 +3,38 @@
 <head>
   <meta charset="UTF-8"/>
   <title>DAR Dummy Services</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/slate/bootstrap.min.css"
+        th:href="@{/webjars/bootswatch-slate/3.3.5/css/bootstrap.min.css}"/>
 </head>
 <body>
+<div class="container">
 
-<p th:text="${message}">Besked her</p>
 
+  <h2>Status</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Entitet</th>
+      <th>Event Id</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="status: ${currentStatus}">
+      <td th:text="${status.key}">Navngivenvej</td>
+      <td th:text="${status.value}">99</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="panel panel-default" th:each="record : ${currentRecords}">
+    <div class="panel-heading" th:text="${record.key}">Panel overskrift</div>
+    <div class="panel-body">
+      <p th:text="${record.value}">Indhold af record</p>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
