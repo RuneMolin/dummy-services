@@ -4,7 +4,7 @@ import dk.cpr.dar.service.StorageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-
+import java.time.LocalDate;
 /**
  * @author Rune Molin, rmo@nine.dk
  */
@@ -21,6 +21,7 @@ public class HomeController {
     ModelAndView mam = new ModelAndView("index");
     mam.addObject("currentStatus", service.getStatus());
     mam.addObject("currentRecords", service.getRecords());
+    mam.addObject("theTime", new LocalDate());
     return mam;
   }
 }
