@@ -21,7 +21,7 @@ public class HomeController {
     ModelAndView mam = new ModelAndView("index");
     mam.addObject("currentStatus", service.getStatus());
     mam.addObject("currentRecords", service.getRecords());
-    mam.addObject("theTime", new LocalDate());
+    mam.addObject("theTime", LocalDate.now());
     return mam;
   }
 }
